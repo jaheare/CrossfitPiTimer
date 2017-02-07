@@ -12,22 +12,6 @@ from time import clock as clock
 from time import sleep as sleep
 from math import floor as floor
 
-lcd = Adafruit_CharLCDPlate()
-
-
-lcd.message("Crossfit timer")
-lcd.set_color(1,0,0)
-sleep(1)
-lcd.set_color(0,1,0)
-sleep(1)
-lcd.set_color(0,0,1)
-sleep(1)
-lcd.set_color(0,0,0)
-lcd.clear()
-
-
-button = (lcd.LEFT, lcd.UP, lcd.DOWN, lcd.RIGHT, lcd.SELECT)
-
 
 def delay_countdown():
     # write "GET READY" to second row and blink LED light
@@ -44,8 +28,7 @@ def stopwatch_up():
         tms = floor(diff % 60)
         tmms = floor(((diff % 60) - tms) * 100)
         newTimeList = [tmm,tms,tmms] #will be used to targed just those characters that have changed on the LCD
-        # insert call to function writing changes
-        print("%02d:%02d:%02d" % (newTimeList[0],newTimeList[1],newTimeList[2])) #testing output
+        # print("%02d:%02d:%02d" % (newTimeList[0],newTimeList[1],newTimeList[2])) #testing output
         timeList = newTimeList
         sleep(.01)
 
@@ -58,7 +41,7 @@ def timer_down(start_timer):
         now = clock()
         diff = now - start
         display_timer = start_timer - diff
-        print("%02d:%02d:%02d" % (newTimeList[0],newTimeList[1],newTimeList[2]))
+        # print("%02d:%02d:%02d" % (newTimeList[0],newTimeList[1],newTimeList[2]))
         tmm = floor(display_timer / 60)
         tms = floor(display_timer % 60)
         tmms = floor(((display_timer % 60) - tms) * 100)
@@ -66,13 +49,20 @@ def timer_down(start_timer):
         if diff >= start_timer:
             time_over = 1
         sleep(.01)
+        return line1(newTimeList[])
 
 
 
 
 def tabata_timer_standard():
     for i in range(0,3):
+        return line2(WORK!)
         timer_down(20)
-        # statement to address just the status row and change it to "WORK" and change LED color
+        return line2(Rest)
         timer_down(10)
         # statement to address just the status row and change it to "REST" and change LED color
+
+
+
+def lcd_output(line1,line2):
+    
